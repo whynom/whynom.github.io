@@ -1,1 +1,0 @@
-# whynom.github.io
