@@ -1,0 +1,9 @@
+#+title: Personal Website
+#+author: Ynom
+#+OPTIONS: num:nil
+#+EXPORT_FILE_NAME: /Users/ynom/org/website/index.html
+
+* Here's my site
+** Here's a secondary thing
+* This would be my second article
+* And my third
