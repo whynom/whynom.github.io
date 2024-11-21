@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LLM jockey</title>
+    <link>http://whynom.github.io/</link>
+    <description>Recent content on LLM jockey</description>
+    <image>
+      <title>LLM jockey</title>
+      <url>http://whynom.github.io/images/papermod-cover.png</url>
+      <link>http://whynom.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Nov 2024 10:30:19 -0700</lastBuildDate>
+    <atom:link href="http://whynom.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>didSet, and eventually willSet</title>
+      <link>http://whynom.github.io/posts/didset-willset/</link>
+      <pubDate>Wed, 20 Nov 2024 10:30:19 -0700</pubDate>
+      <guid>http://whynom.github.io/posts/didset-willset/</guid>
+      <description>&lt;h1 id=&#34;didset&#34;&gt;&lt;code&gt;didSet&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;It probably wasn&amp;rsquo;t the first time I saw this function, but in the &lt;code&gt;GRBD demo&lt;/code&gt; app, I saw this pice of code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/// The player ordering&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; ordering = Ordering.byScore {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;didSet&lt;/span&gt; { observePlayers() }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It seems that &lt;code&gt;didSet&lt;/code&gt; just fires off that closure the &lt;code&gt;observePlayers&lt;/code&gt; function is in, but what is it doing more than just having that function within the &lt;code&gt;Ordering.byScore&lt;/code&gt; closure?&lt;/p&gt;
+&lt;h2 id=&#34;my-first-attempt&#34;&gt;My first attempt&lt;/h2&gt;
+&lt;p&gt;Initially I tried the following&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My first github repo</title>
+      <link>http://whynom.github.io/posts/my-first-github-repo/</link>
+      <pubDate>Wed, 20 Nov 2024 10:30:19 -0700</pubDate>
+      <guid>http://whynom.github.io/posts/my-first-github-repo/</guid>
+      <description>&lt;p&gt;I added something&lt;/p&gt;
+&lt;p&gt;I recently &lt;em&gt;released&lt;/em&gt; my first github repo which is two functions that wrap around a some keychain functions so that someone can store a string on a users iOS (should be any Apple device) and save that information between user installations.  My impetus being, I wanted to make it so I can have someone use my app once, and then have to pay to get more uses.  I didn&amp;rsquo;t want them to be able to get the free use, and then uninstall and reinstall and get another free use.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
