@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on LLM jockey</title>
+    <link>http://whynom.github.io/posts/</link>
+    <description>Recent content in Posts on LLM jockey</description>
+    <image>
+      <title>LLM jockey</title>
+      <url>http://whynom.github.io/images/papermod-cover.png</url>
+      <link>http://whynom.github.io/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Jan 2025 10:00:00 -0800</lastBuildDate>
+    <atom:link href="http://whynom.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quicksort and memory stuff in Rust</title>
+      <link>http://whynom.github.io/posts/quick-sort-and-lessons-learned/</link>
+      <pubDate>Fri, 10 Jan 2025 10:00:00 -0800</pubDate>
+      <guid>http://whynom.github.io/posts/quick-sort-and-lessons-learned/</guid>
+      <description>&lt;h2 id=&#34;what-is-quicksort&#34;&gt;What is quicksort?&lt;/h2&gt;
+&lt;p&gt;Quicksort is a recursive algorithm that sorts a collection of number type elements into (in my case) ascending order.  A very quick run down is that the algorithm picks an element of the collection, a pivot, then goes through each number in the collection and puts that number in either a collection of lesser or a collection of greater than the pivot number.  You then take the collection of lesser numbers, add the pivot to that collection, and then add the greater collection, thereby making one big collection with all the lesser numbers before the pivot number, and all the greater numbers after the pivot number.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Binary Search Grokking Algorithms</title>
+      <link>http://whynom.github.io/posts/binary-search-grokking-algorithms/</link>
+      <pubDate>Thu, 05 Dec 2024 10:00:36 -0800</pubDate>
+      <guid>http://whynom.github.io/posts/binary-search-grokking-algorithms/</guid>
+      <description>&lt;h2 id=&#34;guess-my-number&#34;&gt;Guess my number&lt;/h2&gt;
+&lt;p&gt;If I play a guessing game with you where you have to guess the number I&amp;rsquo;m thinking of between 0 and 100, and after each guess I tell you if the number is higher or lower, what&amp;rsquo;s the best strategy?&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s first talk about what&amp;rsquo;s likely the worst strategy.  The worst strategy is:&lt;/p&gt;
+&lt;p&gt;You: 1&lt;/p&gt;
+&lt;p&gt;Me: Higher&lt;/p&gt;
+&lt;p&gt;You: 2&lt;/p&gt;
+&lt;p&gt;Me: Higher&lt;/p&gt;
+&lt;p&gt;You: 3&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s apparent without much thought that this could take &lt;em&gt;up to&lt;/em&gt; 101 guesses, and it is generally just a bad strategy.  Even if my number is 1, it&amp;rsquo;s, generally speaking, a bad strategy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Impetus for Using GRDB</title>
+      <link>http://whynom.github.io/posts/impetus-for-using-grdb/</link>
+      <pubDate>Wed, 27 Nov 2024 10:00:00 -0800</pubDate>
+      <guid>http://whynom.github.io/posts/impetus-for-using-grdb/</guid>
+      <description>&lt;h2 id=&#34;core-data-is-painful&#34;&gt;Core Data is painful&lt;/h2&gt;
+&lt;p&gt;When I first semi-earnestly started trying to program, Core Data was Apple&amp;rsquo;s answer for persisting data between app usages.  I never did anything fancy with it, but it did get the job done for me once upon a time.&lt;/p&gt;
+&lt;p&gt;The problems I had with it were that a lot of it was in the XCode gui and that it had some &lt;em&gt;technical baggage&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Doing anything not in text while trying to make a program, or when doing something programmatically, is a real pain.  I guess it&amp;rsquo;s supposed to be beginner user friendly, and maybe avoid errors with typos, especially when you define things with strings, but it has huge downsides.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Get and Set on computed variables in Swift</title>
+      <link>http://whynom.github.io/posts/get-and-set-in-swift/</link>
+      <pubDate>Mon, 25 Nov 2024 10:30:19 -0700</pubDate>
+      <guid>http://whynom.github.io/posts/get-and-set-in-swift/</guid>
+      <description>&lt;h2 id=&#34;ai-steers-me-right-and-steers-me-wrong&#34;&gt;AI steers me right, and steers me wrong&lt;/h2&gt;
+&lt;p&gt;I wrote a nifty article about &lt;code&gt;didSet&lt;/code&gt; and &lt;code&gt;willSet&lt;/code&gt;.  They&amp;rsquo;re observers you can put on a property that execute a block of code whenever the property they&amp;rsquo;re attached to changes.  While jumping down that well, my AI sidekick was the one that gave me the classification of these keywords which is &lt;code&gt;observers&lt;/code&gt;.  Personally, I love to know what a thing in programming is called.  I sometimes find myself trying to describe a group of programming things and I don&amp;rsquo;t have the word for them.  &lt;code&gt;didSet&lt;/code&gt; and &lt;code&gt;willSet&lt;/code&gt; aren&amp;rsquo;t really functions but I need to mention them in tandem, so having the term &lt;code&gt;observer&lt;/code&gt; is quite useful.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>didSet, and eventually willSet</title>
+      <link>http://whynom.github.io/posts/didset-willset/</link>
+      <pubDate>Wed, 20 Nov 2024 10:30:19 -0700</pubDate>
+      <guid>http://whynom.github.io/posts/didset-willset/</guid>
+      <description>&lt;h1 id=&#34;didset&#34;&gt;&lt;code&gt;didSet&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;It probably wasn&amp;rsquo;t the first time I saw this function, but in the &lt;code&gt;GRBD demo&lt;/code&gt; app, I saw this pice of code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/// The player ordering&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; ordering = Ordering.byScore {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;didSet&lt;/span&gt; { observePlayers() }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It seems that &lt;code&gt;didSet&lt;/code&gt; just fires off that closure the &lt;code&gt;observePlayers&lt;/code&gt; function is in, but what is it doing more than just having that function within the &lt;code&gt;Ordering.byScore&lt;/code&gt; closure?&lt;/p&gt;
+&lt;h2 id=&#34;my-first-attempt&#34;&gt;My first attempt&lt;/h2&gt;
+&lt;p&gt;Initially I tried the following&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My first github repo</title>
+      <link>http://whynom.github.io/posts/my-first-github-repo/</link>
+      <pubDate>Wed, 20 Nov 2024 10:30:19 -0700</pubDate>
+      <guid>http://whynom.github.io/posts/my-first-github-repo/</guid>
+      <description>&lt;p&gt;I added something&lt;/p&gt;
+&lt;p&gt;I recently &lt;em&gt;released&lt;/em&gt; my first github repo which is two functions that wrap around a some keychain functions so that someone can store a string on a users iOS (should be any Apple device) and save that information between user installations.  My impetus being, I wanted to make it so I can have someone use my app once, and then have to pay to get more uses.  I didn&amp;rsquo;t want them to be able to get the free use, and then uninstall and reinstall and get another free use.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
