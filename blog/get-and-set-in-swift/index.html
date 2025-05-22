@@ -1,0 +1,412 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    Get and Set on computed variables in Swift - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Get and Set on computed variables in Swift" />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Get and Set on computed variables in Swift" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Get and Set on computed variables in Swift" />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;get-and-set-in-swift&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;get-and-set-in-swift&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Get and Set on computed variables in Swift</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-26</time>
+  <span class="mx-1">&middot;</span>
+  <span>4min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#ai-steers-me-right-and-steers-me-wrong"
+            >AI steers me right, and steers me wrong</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#computed-variables-as-syntactic-sugar-for-functions"
+            >computed variables as syntactic sugar for functions</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#but-wait-computed-variables-have-a-get-and-set"
+            >But wait, computed variables have a get and set</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#the-rectangle"
+            >The Rectangle</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#let-s-get-to-the-point"
+            >Let&#x27;s get to the point</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#size"
+            >Size</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#point-and-sizes-lead-to-the-rectangle"
+            >Point and Sizes lead to the Rectangle</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#accessing-the-center"
+            >Accessing the center</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#setting-the-center"
+            >Setting the center</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/get-and-set-in-swift/#final-thoughts"
+            >Final thoughts</a
+          >
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="ai-steers-me-right-and-steers-me-wrong">AI steers me right, and steers me wrong<a class="zola-anchor" href="#ai-steers-me-right-and-steers-me-wrong" aria-label="Anchor link for: ai-steers-me-right-and-steers-me-wrong">🔗</a></h2>
+<p>I wrote a nifty article about <code>didSet</code> and <code>willSet</code>.  They're observers you can put on a property that execute a block of code whenever the property they're attached to changes.  While jumping down that well, my AI sidekick was the one that gave me the classification of these keywords which is <code>observers</code>.  Personally, I love to know what a thing in programming is called.  I sometimes find myself trying to describe a group of programming things and I don't have the word for them.  <code>didSet</code> and <code>willSet</code> aren't really functions but I need to mention them in tandem, so having the term <code>observer</code> is quite useful.</p>
+<p>As useful as the ole' AI was with enlightening me about observers, it told me that <code>get</code> and <code>set</code> are the <code>observer</code>s for computed properties, as <code>didSet</code> and <code>willSet</code> can't be used on <code>get</code> and <code>set</code>.  It was wrong, but nevertheless, I plunged into it to figure out exactly what these... functions(?) keywords(?) XCode pink words(?) are all about.  I've seen them before, and I had the gist, but it turns out my gist was somewhat inaccurate.</p>
+<h2 id="computed-variables-as-syntactic-sugar-for-functions">computed variables as syntactic sugar for functions<a class="zola-anchor" href="#computed-variables-as-syntactic-sugar-for-functions" aria-label="Anchor link for: computed-variables-as-syntactic-sugar-for-functions">🔗</a></h2>
+<p>My understanding of computed variables in the Swift language was that they were functions.  Without a defined <code>get</code> and <code>set</code>, they very much appear that way.  <em>Let's take a look.</em></p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>computedVariablesAreFunctions() async throws {
+</span><span>        </span><span style="color:#b48ead;">struct</span><span> Money {
+</span><span>            </span><span style="color:#b48ead;">var</span><span> cents: Double
+</span><span>            </span><span style="color:#b48ead;">var</span><span> dollars: Double {
+</span><span>                cents / </span><span style="color:#d08770;">100
+</span><span>            }
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">struct</span><span> MoneyWithAFunction {
+</span><span>            </span><span style="color:#b48ead;">var</span><span> cents: Double
+</span><span>            </span><span style="color:#b48ead;">func </span><span>dollars() -&gt; Double {
+</span><span>               cents / </span><span style="color:#d08770;">100
+</span><span>            }
+</span><span>        }
+</span><span>
+</span><span>        #expect(Money(cents: </span><span style="color:#d08770;">233</span><span>).dollars == MoneyWithAFunction(cents: </span><span style="color:#d08770;">233</span><span>).dollars())
+</span><span>    }
+</span></code></pre>
+<p>Well lookie here.  Either way I make a money struct, whether I use a computed variable or a function that almost exactly mimics it, it gives the <em>exact</em> same result, it's just some different syntax.  It looks like my gut reaction was right!</p>
+<h2 id="but-wait-computed-variables-have-a-get-and-set">But wait, computed variables have a <code>get</code> and <code>set</code><a class="zola-anchor" href="#but-wait-computed-variables-have-a-get-and-set" aria-label="Anchor link for: but-wait-computed-variables-have-a-get-and-set">🔗</a></h2>
+<p>The previous example of a computed property is actually what the swift book refers to as a <em>read only</em> computed property, which will hopefully make sense after going through the following example I lifted from the  <a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/properties/#Computed-Properties">swift book</a></p>
+<h2 id="the-rectangle">The Rectangle<a class="zola-anchor" href="#the-rectangle" aria-label="Anchor link for: the-rectangle">🔗</a></h2>
+<p>In this example, we're going to make a rectangle.  We'll give it an <code>origin</code> and a <code>size</code>, and it will give us a center.  For us to define an origin, we need a point.</p>
+<h2 id="let-s-get-to-the-point">Let's get to the point<a class="zola-anchor" href="#let-s-get-to-the-point" aria-label="Anchor link for: let-s-get-to-the-point">🔗</a></h2>
+<p>Here's how we'll define a point, like the one you used to see in math class on a cartesian plane.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#b48ead;">struct</span><span> Point {
+</span><span>    </span><span style="color:#b48ead;">var</span><span> x = </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0</span><span>, y = </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0
+</span><span>}
+</span></code></pre>
+<p>Give me an <code>x</code> and a <code>y</code> and I'll give you a <code>Point</code>.</p>
+<h2 id="size">Size<a class="zola-anchor" href="#size" aria-label="Anchor link for: size">🔗</a></h2>
+<p>Give me a <code>width</code> and <code>height</code>, and I'll give you the <code>Size</code> of a rectangle.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#b48ead;">struct</span><span> Size {
+</span><span>    </span><span style="color:#b48ead;">var</span><span> width = </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0</span><span>, height = </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0
+</span><span>}
+</span></code></pre>
+<h2 id="point-and-sizes-lead-to-the-rectangle">Point and Sizes lead to the Rectangle<a class="zola-anchor" href="#point-and-sizes-lead-to-the-rectangle" aria-label="Anchor link for: point-and-sizes-lead-to-the-rectangle">🔗</a></h2>
+<p>Finally,</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#b48ead;">struct</span><span> Rect {
+</span><span>    </span><span style="color:#b48ead;">var</span><span> origin = Point()
+</span><span>    </span><span style="color:#b48ead;">var</span><span> size = Size()
+</span><span>    </span><span style="color:#b48ead;">var</span><span> center: Point {
+</span><span>        </span><span style="color:#b48ead;">get</span><span> {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> centerX = origin.x + (size.width / </span><span style="color:#d08770;">2</span><span>)
+</span><span>            </span><span style="color:#b48ead;">let</span><span> centerY = origin.y + (size.height / </span><span style="color:#d08770;">2</span><span>)
+</span><span>            </span><span style="color:#b48ead;">return</span><span> Point(x: centerX, y: centerY)
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">set</span><span>(newCenter) {
+</span><span>            origin.x = newCenter.x - (size.width / </span><span style="color:#d08770;">2</span><span>)
+</span><span>            origin.y = newCenter.y - (size.height / </span><span style="color:#d08770;">2</span><span>)
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Here we see our <code>get</code> and <code>set</code> keywords in action.  Once we've made a <code>Rect</code> we get computations on our <code>origin</code> and <code>size</code> that give us the center.</p>
+<h2 id="accessing-the-center">Accessing the <code>center</code><a class="zola-anchor" href="#accessing-the-center" aria-label="Anchor link for: accessing-the-center">🔗</a></h2>
+<p>Whenever we access the center, it'll run the code block in the curly braces following the <code>get</code> keyword.  Let's <em>test</em> this theory.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>getSetTests() async throws {
+</span><span>        </span><span style="color:#b48ead;">var</span><span> square = Rect(origin: Point(x: </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0</span><span>, y: </span><span style="color:#d08770;">0</span><span>.</span><span style="color:#d08770;">0</span><span>),
+</span><span>                          size: Size(width: </span><span style="color:#d08770;">10</span><span>.</span><span style="color:#d08770;">0</span><span>, height: </span><span style="color:#d08770;">10</span><span>.</span><span style="color:#d08770;">0</span><span>))
+</span><span>        #expect(square.center.x == </span><span style="color:#d08770;">5</span><span>)
+</span><span>        #expect(square.center.y == </span><span style="color:#d08770;">5</span><span>)
+</span><span>        }
+</span></code></pre>
+<p>When we're accessing the <code>center</code>, which we didn't define upon making the <code>Rect</code>, it runs that code block after the <code>get</code> key word and returns to us a <code>Point</code> with a center that has an x at 5, and a y at 5.</p>
+<h2 id="setting-the-center">Setting the <code>center</code><a class="zola-anchor" href="#setting-the-center" aria-label="Anchor link for: setting-the-center">🔗</a></h2>
+<p>Now we're going to tell our <code>Rect</code> instance what the new center is, and it's going to execute the code block after the <code>set</code> keyword to change the <code>center</code> of our rectangle and make a new rectangle from which we can give the new <code>origin</code></p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>getSetTests() async throws {
+</span><span>       ...
+</span><span>
+</span><span>        square.center = Point(x: </span><span style="color:#d08770;">15</span><span>.</span><span style="color:#d08770;">0</span><span>, y: </span><span style="color:#d08770;">15</span><span>.</span><span style="color:#d08770;">0</span><span>)
+</span><span>        #expect(square.origin.x == </span><span style="color:#d08770;">10</span><span>)
+</span><span>        #expect(square.origin.y == </span><span style="color:#d08770;">10</span><span>)
+</span><span>    }
+</span><span>
+</span></code></pre>
+<p>When we set that <code>center</code> property, the code block after <code>set</code> in our <code>Rect</code> is executed and it returns to us the new <code>origin</code>.</p>
+<h2 id="final-thoughts">Final thoughts<a class="zola-anchor" href="#final-thoughts" aria-label="Anchor link for: final-thoughts">🔗</a></h2>
+<p>This is pretty basic stuff but I feel like going through it step by step, making tests, writing everything out gives me a better and more solid understanding.  Computed variables aren't just syntactic sugar for a function, they're their own <em>thing</em>.  The <code>set</code> and the <code>get</code> make them unique and different from a function, and knowing that gives me another tool to use if I should ever run into something that needs the unique use of the <code>get</code> <code>set</code> on a computed variable.</p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;didset-willset&#x2F;"
+    ><span class="mr-1.5">←</span><span>didSet, and eventually willSet</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;swift-app-without-xcode-but-with-testing&#x2F;"
+    ><span>A quick swift application setup with testing without using XCode</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

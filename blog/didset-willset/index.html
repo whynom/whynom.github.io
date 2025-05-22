@@ -1,0 +1,373 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    didSet, and eventually willSet - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="didSet, and eventually willSet" />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="didSet, and eventually willSet" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="didSet, and eventually willSet" />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;didset-willset&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;didset-willset&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">didSet, and eventually willSet</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-24</time>
+  <span class="mx-1">&middot;</span>
+  <span>4min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/didset-willset/#didset"
+            >didSet</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/didset-willset/#my-first-attempt"
+                >My first attempt</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/didset-willset/#back-to-that-original-code"
+                >Back to that original code</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/didset-willset/#some-final-notes"
+                >Some final notes</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h1 id="didset"><code>didSet</code><a class="zola-anchor" href="#didset" aria-label="Anchor link for: didset">🔗</a></h1>
+<p>It probably wasn't the first time I saw this function, but in the <code>GRBD demo</code> app, I saw this pice of code.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#65737e;">/// The player ordering
+</span><span>    </span><span style="color:#b48ead;">var</span><span> ordering = Ordering.byScore {
+</span><span>        </span><span style="color:#b48ead;">didSet</span><span> { observePlayers() }
+</span><span>    }
+</span></code></pre>
+<p>It seems that <code>didSet</code> just fires off that closure the <code>observePlayers</code> function is in, but what is it doing more than just having that function within the <code>Ordering.byScore</code> closure?</p>
+<h2 id="my-first-attempt">My first attempt<a class="zola-anchor" href="#my-first-attempt" aria-label="Anchor link for: my-first-attempt">🔗</a></h2>
+<p>Initially I tried the following</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>notHowDidSetWorks() async throws {
+</span><span>        </span><span style="color:#b48ead;">var</span><span> numberOfCows = </span><span style="color:#d08770;">42
+</span><span>        </span><span style="color:#b48ead;">var</span><span> changedBool = </span><span style="color:#b48ead;">false
+</span><span>        </span><span style="color:#b48ead;">var</span><span> updatingNumberOfCows = numberOfCows {
+</span><span>            </span><span style="color:#b48ead;">didSet</span><span> {
+</span><span>                changedBool = </span><span style="color:#b48ead;">true
+</span><span>            }
+</span><span>        }
+</span><span>        numberOfCows = </span><span style="color:#d08770;">900
+</span><span>        
+</span><span>        #expect(numberOfCows == </span><span style="color:#d08770;">900</span><span>)
+</span><span>        #expect(changedBool == </span><span style="color:#b48ead;">true</span><span>) </span><span style="color:#65737e;">// FAIL: FALSE
+</span><span>    }
+</span></code></pre>
+<p>This fails.  The <code>didSet</code> function can't just run in app's general scope, it needs to be brought up in a class so that it's being held in device's memory.</p>
+<h3 id="i-don-t-understand-on-device-memory">I don't understand on device memory<a class="zola-anchor" href="#i-don-t-understand-on-device-memory" aria-label="Anchor link for: i-don-t-understand-on-device-memory">🔗</a></h3>
+<p>I think when a <code>class</code> or a <code>struct</code> is initialized they are stored in the device's memory or in <em>the stack</em> or both, or something like that.  When I run the above test the code is just executed, but there's no way for a function like <code>didSet</code> to remain running and observing for a change in the <code>numberOfCows</code> variable.  It needs to be within a <code>class</code> (maybe it can also work in a <code>struct</code>?) so that that when that <code>class</code> is initialized and stored in the device's memory, it can remain "running".</p>
+<p>Again, this is all very vague and not well understood by me, but this is what I'm thinking right now.  Anyway, on to trying to put it in a <code>class</code></p>
+<h3 id="i-thought-you-had-class-i-thought-you-had-class">I thought you had class!  I thought <em>you</em> had class!@<a class="zola-anchor" href="#i-thought-you-had-class-i-thought-you-had-class" aria-label="Anchor link for: i-thought-you-had-class-i-thought-you-had-class">🔗</a></h3>
+<p>This next test shows proper usage and where exactly <code>didSet</code> fires.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>didSetInitializedInAClass() async throws {
+</span><span>        </span><span style="color:#b48ead;">class</span><span> countingCows {
+</span><span>            </span><span style="color:#b48ead;">var</span><span> numberOfCows = </span><span style="color:#d08770;">42</span><span> {
+</span><span>                </span><span style="color:#b48ead;">didSet</span><span> {
+</span><span>                    numberOfCows += </span><span style="color:#d08770;">1
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>        
+</span><span>        </span><span style="color:#65737e;">/// where does chocolate milk come from?
+</span><span>        </span><span style="color:#b48ead;">var</span><span> chocolateCows = countingCows()
+</span><span>        #expect(chocolateCows.numberOfCows == </span><span style="color:#d08770;">42</span><span>)
+</span><span>        
+</span><span>        chocolateCows.numberOfCows = </span><span style="color:#d08770;">999
+</span><span>        </span><span style="color:#65737e;">/// this is where didSet was fired
+</span><span>        #expect(chocolateCows.numberOfCows != </span><span style="color:#d08770;">43</span><span>)
+</span><span>        #expect(chocolateCows.numberOfCows == </span><span style="color:#d08770;">1000</span><span>)
+</span><span>    }
+</span></code></pre>
+<p><code>didSet</code> fires whenever the <code>numberOfCows</code> property on the <code>countingCows</code> <em>class</em> changes.  As the test shows, it fires after the setting, so when we changed <code>numberOfCows</code> to 999, it fired the <code>didSet</code> code block to add 1 more cow and ending up with 1000 cows.</p>
+<p>One wonders what should be done if we wish to execute a block of code <em>before</em> a property is changed.</p>
+<h3 id="willset"><code>willSet</code><a class="zola-anchor" href="#willset" aria-label="Anchor link for: willset">🔗</a></h3>
+<p>This function does the same thing as <code>didSet</code> except it does it just <em>before</em> a property is changed.  Making the following example does <em>not</em> show it doing anything different from the <code>didSet</code> function because I couldn't think of one.  Maybe, some day, I'll run into a situation where I need a <code>willSet</code>, or maybe I'll stumble upon some code where it is needed but for now, bask in my ignorance!</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#b48ead;">@Test func </span><span>willSetInitializedInAClass() async throws {
+</span><span>        </span><span style="color:#b48ead;">class</span><span> countingCows {
+</span><span>            </span><span style="color:#b48ead;">var</span><span> numberOfCows = </span><span style="color:#d08770;">42</span><span> {
+</span><span>                </span><span style="color:#b48ead;">willSet</span><span> {
+</span><span>                    numberOfChanges += </span><span style="color:#d08770;">1
+</span><span>                }
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">var</span><span> numberOfChanges = </span><span style="color:#d08770;">0
+</span><span>        }
+</span><span>        
+</span><span>        </span><span style="color:#65737e;">/// where does chocolate milk come from?
+</span><span>        </span><span style="color:#b48ead;">var</span><span> chocolateCows = countingCows()
+</span><span>        #expect(chocolateCows.numberOfCows == </span><span style="color:#d08770;">42</span><span>)
+</span><span>        
+</span><span>        #expect(chocolateCows.numberOfChanges == </span><span style="color:#d08770;">0</span><span>)
+</span><span>        </span><span style="color:#65737e;">/// this is where willSet fires
+</span><span>        chocolateCows.numberOfCows = </span><span style="color:#d08770;">999
+</span><span>        #expect(chocolateCows.numberOfChanges == </span><span style="color:#d08770;">1</span><span>)
+</span><span>    }
+</span></code></pre>
+<p>This is example can be a bit less confusing because <code>willSet</code> is not running a code block that changes itself, it changes the <code>numberOfChanges</code> variable instead.</p>
+<h2 id="back-to-that-original-code">Back to that original code<a class="zola-anchor" href="#back-to-that-original-code" aria-label="Anchor link for: back-to-that-original-code">🔗</a></h2>
+<p>I more or less kind of understood what the original code was doing but I have a better grasp about how <code>didSet</code> has to be a function on a property in a <code>class</code>.  Originally, I was kind of thinking why not just define a closure on the <code>byScore</code> property but that would only fire once and not on updates.  It'd probably add more complexity to the <code>byScore</code> property as well as making the calling of it more difficult to read.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>    </span><span style="color:#65737e;">/// The player ordering
+</span><span>    </span><span style="color:#b48ead;">var</span><span> ordering = Ordering.byScore {
+</span><span>        </span><span style="color:#b48ead;">didSet</span><span> { observePlayers() }
+</span><span>    }
+</span></code></pre>
+<h2 id="some-final-notes">Some final notes<a class="zola-anchor" href="#some-final-notes" aria-label="Anchor link for: some-final-notes">🔗</a></h2>
+<p>I realized that I was thinking of them and referring to them as functions, but it appears they are <code>observers</code>.</p>
+<p>You can't have an observer on a lazy property which intuitively feels right because lazily stored properties don't exist when the <code>class</code> they are a part of is initialized, thus these observers would have nothing to observe.  It seems like a syntax thing to protect against programmer errors.</p>
+<p>There's also <em>different</em> kinds of <code>observers</code> for computed properties which are <code>get</code> and <code>set</code>which I've certainly seen, and to some point understood, like I did <code>didSet</code> and <code>willSet</code> but I should probably throw together another branch and essay to get a better full idea of using them.  I did not realize they were used only on computed variables.</p>
+<p><a href="https://github.com/whynom/swift-didSet-willSet">repo</a></p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;the-basics-of-zola&#x2F;"
+    ><span class="mr-1.5">←</span><span>The very basics of zola</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;get-and-set-in-swift&#x2F;"
+    ><span>Get and Set on computed variables in Swift</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

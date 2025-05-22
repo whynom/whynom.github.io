@@ -1,0 +1,446 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    The very basics of zola - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Making a zola site and cutting past my confusion." />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The very basics of zola" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Making a zola site and cutting past my confusion." />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;the-basics-of-zola&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;the-basics-of-zola&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">The very basics of zola</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-21</time>
+  <span class="mx-1">&middot;</span>
+  <span>7min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#zola"
+            >Zola</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#static-site-generator-formats"
+                >Static site generator formats</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#sections"
+                >Sections</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#templates-base-html"
+                >templates&#x2F;base.html</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#templates-index-html"
+                >templates&#x2F;index.html</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#content-blog-index-md"
+                >content&#x2F;blog&#x2F;_index.md</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#templates-blog-html"
+                >templates&#x2F;blog.html</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#templates-blog-page-html"
+                >templates&#x2F;blog-page.html</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#an-actual-blog-post"
+                >An actual blog post</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#updating-templates-index-html"
+                >Updating templates&#x2F;index.html</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/the-basics-of-zola/#summary"
+                >Summary</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="zola">Zola<a class="zola-anchor" href="#zola" aria-label="Anchor link for: zola">🔗</a></h2>
+<p>Zola is a static site generator written in the Rust programming language.  I've used Hugo a lot before but I always felt like I could barely stumble together a website, and after leaving a Hugo website for a while, I'd come back and it wouldn't work.  This is probably more due to something I was doing rather than whatever was going on with Hugo but I thought I'd change it up just because I might as well.</p>
+<p>I should also point out, I've never used any of the Go underpinnings of Hugo.  I've never used Go, I don't understand it's semantics or anything, so whatever programming language a static site is based upon makes no difference to me.  The confusion for me always lay at the templating level of static sites.  I decided to go with Zola because all else being equal, I'll take the static site generator written in a language I'm trying to learn.  Why not?</p>
+<p>Well it turns out there's a huge benefit to using a static site generator written in Rust; the error outputs.  Rust has really good and easy to read errors, and using Zola, it also gives really good easy to read error outputs.  Awesome.</p>
+<h3 id="static-site-generator-formats">Static site generator formats<a class="zola-anchor" href="#static-site-generator-formats" aria-label="Anchor link for: static-site-generator-formats">🔗</a></h3>
+<p>I've used Hugo in the past, and while I like it, I never quite understood all of the templating and use of blocks and where blocks got replaced and all that.  I was able to limp my way through everything with a mix of minimal understanding and trial and error, but I never quite understood everything.  After going through <a href="https://www.getzola.org/documentation/getting-started/overview/">Zola's documentary overview</a>  with my AI buddy, I finally understand.</p>
+<p>I'm going to write this explaining all the confusing parts of that overview of how templates and blocks work as best I can.  I'm skipping all the install explanation.</p>
+<h3 id="sections">Sections<a class="zola-anchor" href="#sections" aria-label="Anchor link for: sections">🔗</a></h3>
+<p>This was initially very confusing to me.  What is a section? I think it's best understood with a solid example.</p>
+<p>I want my webpage to have several pages.  The initial landing page, but I'd also like a blog page.  That blog page is going to have the title and the first 5 lines of my 5 most recent blog posts, or maybe my 3 most popular blog posts, or maybe even the whole of my 3 most recent blog posts , but the point is it will contain links to other pages and I have to get my hands on something that can represent the collection of all my blog posts so I can tell Zola which ones I want to show, in what order and to what extent (like the whole post or just a summary with a title).</p>
+<p>That collection of all my blog posts is called a <em>section</em>.</p>
+<p>A section is really a collection of pages.  Although when I go to the <code>my-website.com/blog</code> page, that is a page, when it shows me some collection of my posts, of the type <em>blog</em>, it's showing me some collection of my <em>blog</em> section.</p>
+<p>That collection of my <em>blog</em> section can be the 5 most recent posts, my 5 most popular posts, a random smattering of blog posts, or whatever I want, but to be able to organize and filter and sift through all my blog posts and show them on my blog page, I need a some collection of them, and that collection of <em>all</em> my blog posts is a section.</p>
+<h3 id="templates-base-html"><code>templates/base.html</code><a class="zola-anchor" href="#templates-base-html" aria-label="Anchor link for: templates-base-html">🔗</a></h3>
+<p>Our templates directory, unsurprisingly, holds all our templates.  This is probably the part that confused me the most, so let's take a look at our <code>base.html</code>.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;!</span><span style="color:#b48ead;">DOCTYPE </span><span style="color:#d08770;">html</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">html </span><span style="color:#d08770;">lang</span><span>=&quot;</span><span style="color:#a3be8c;">en</span><span>&quot;&gt;
+</span><span>
+</span><span>&lt;</span><span style="color:#bf616a;">head</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">meta </span><span style="color:#d08770;">charset</span><span>=&quot;</span><span style="color:#a3be8c;">utf-8</span><span>&quot;&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">title</span><span>&gt;MyBlog&lt;/</span><span style="color:#bf616a;">title</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">head</span><span>&gt;
+</span><span>
+</span><span>&lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">section </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">section</span><span>&quot;&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">container</span><span>&quot;&gt;
+</span><span>      {% block content %} {% endblock %}
+</span><span>    &lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">section</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>
+</span><span>&lt;/</span><span style="color:#bf616a;">html</span><span>&gt;
+</span></code></pre>
+<p>The thing that confused me about this is those block <em>variables</em>.  I know they aren't variables, but that's how I was thinking about them.  My idea was that <code>base.html</code> as the <em>thing</em> we serve and see, and we put other code into those block.  While this is kind of true, really we don't ever actually serve <code>base.html</code> rather it's a recipe for other things we serve, and we put whatever difference we want in that recipe in those code blocks.</p>
+<p>Typing this out, it's hard to explain my misunderstanding, but there it is.</p>
+<h3 id="templates-index-html"><code>templates/index.html</code><a class="zola-anchor" href="#templates-index-html" aria-label="Anchor link for: templates-index-html">🔗</a></h3>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% extends &quot;base.html&quot; %}
+</span><span>
+</span><span>{% block content %}
+</span><span>&lt;</span><span style="color:#bf616a;">h1 </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">title</span><span>&quot;&gt;
+</span><span>  This is my blog made with Zola.
+</span><span>&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>{% endblock content %}
+</span></code></pre>
+<p>Maybe it's the <em>extends</em> keyword that confused me.  I felt like this <code>templates/index.html</code> just adds more to to the <code>templates/base.html</code> file, but really it's using the <code>base.html</code> file as a template to make it's own <code>index.html</code> template.</p>
+<p>This file will become our index page for the whole website or the thing we see first when we visit the website at its domain.  This is what we see when we go to <code>mywebsite.com</code></p>
+<h3 id="content-blog-index-md"><code>content/blog/_index.md</code><a class="zola-anchor" href="#content-blog-index-md" aria-label="Anchor link for: content-blog-index-md">🔗</a></h3>
+<p>The <code>content</code> directory is where we get all our stuff to be served up.  Each directory within the <code>content</code> directory represents a collection, or a section, of pages <em>if</em> that directory has a <code>_index.md</code> file.</p>
+<p>This file that makes a directory into a section gives us basic information about the section.  Our <code>content/blog/_index.md</code> file should look as follows.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>+++
+</span><span>title = &quot;List of blog posts&quot;
+</span><span>sort_by = &quot;date&quot;
+</span><span>template = &quot;blog.html&quot;
+</span><span>page_template = &quot;blog-page.html&quot;
+</span><span>+++
+</span></code></pre>
+<p>The <code>title</code> is giving us the title of the section.  The <code>sort_by</code> is giving us the order in which this collection of pages, that is the pages within our <code>content/blog</code> directory, will be given to us when we call upon it.</p>
+<p>The template is saying what we will serve when we go to the blog url <code>ourwebsite.com/blog</code>.</p>
+<p>The <code>page_template</code> is giving us the template we'll use whenever we serve up a blog like <code>ourwebsite.com/blog/my-post-about-zola</code>.</p>
+<h3 id="templates-blog-html"><code>templates/blog.html</code><a class="zola-anchor" href="#templates-blog-html" aria-label="Anchor link for: templates-blog-html">🔗</a></h3>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% extends &quot;base.html&quot; %}
+</span><span>
+</span><span>{% block content %}
+</span><span>&lt;</span><span style="color:#bf616a;">h1 </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">title</span><span>&quot;&gt;
+</span><span>  {{ section.title }}
+</span><span>&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">ul</span><span>&gt;
+</span><span>  </span><span style="color:#65737e;">&lt;!-- If you are using pagination, section.pages will be empty.
+</span><span style="color:#65737e;">       You need to use the paginator object --&gt;  
+</span><span>  {% for page in section.pages %}
+</span><span>  &lt;</span><span style="color:#bf616a;">li</span><span>&gt;&lt;</span><span style="color:#bf616a;">a </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">{{ page.permalink | safe }}</span><span>&quot;&gt;{{ page.title }}&lt;/</span><span style="color:#bf616a;">a</span><span>&gt;&lt;/</span><span style="color:#bf616a;">li</span><span>&gt;
+</span><span>  {% endfor %}
+</span><span>&lt;/</span><span style="color:#bf616a;">ul</span><span>&gt;
+</span><span>{% endblock content %}
+</span></code></pre>
+<p>This is the template for the blog page <code>mywebsite.com/blog</code>, the page that's going to show some collection of our blog posts.  That collection can be the 5 most popular posts, the first 3 lines and the title of our 3 most recent posts, the whole of our 5 oldest posts, whatever we want.</p>
+<p>It's also using the <code>base.html</code> for how it should look because <code>base.html</code> is giving us the <em>very</em> most basic webpage.  Just some meta data and the title of the blog and some organization.  Instead of having to type out that html in the <code>base.html</code> file over and over again, we've got a little template that we pretty much make every page within our website with.  It's convenient that way.</p>
+<p>The <code>section.pages</code> is giving us access to our blog section and the pages within that section.  How does this page know that the <code>blog</code> section is the one we want to get the pages from?</p>
+<p>It knows from the TOML information we have in our <code>content/blog/_index.md</code> file.</p>
+<h3 id="templates-blog-page-html"><code>templates/blog-page.html</code><a class="zola-anchor" href="#templates-blog-page-html" aria-label="Anchor link for: templates-blog-page-html">🔗</a></h3>
+<p>The following is how every one of our blogs in our <code>/content/blog</code> directory will be served up when we visit the page <code>mywebsite.com/blog/a-post-about-zola</code>.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% extends &quot;base.html&quot; %}
+</span><span>
+</span><span>{% block content %}
+</span><span>&lt;</span><span style="color:#bf616a;">h1 </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">title</span><span>&quot;&gt;
+</span><span>  {{ page.title }}
+</span><span>&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">p </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">subtitle</span><span>&quot;&gt;&lt;</span><span style="color:#bf616a;">strong</span><span>&gt;{{ page.date }}&lt;/</span><span style="color:#bf616a;">strong</span><span>&gt;&lt;/</span><span style="color:#bf616a;">p</span><span>&gt;
+</span><span>{{ page.content | safe }}
+</span><span>{% endblock content %}
+</span></code></pre>
+<h3 id="an-actual-blog-post">An actual blog post<a class="zola-anchor" href="#an-actual-blog-post" aria-label="Anchor link for: an-actual-blog-post">🔗</a></h3>
+<pre data-lang="markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-markdown "><code class="language-markdown" data-lang="markdown"><span>+++
+</span><span>title = &quot;My first post&quot;
+</span><span>date = 2019-11-27
+</span><span>+++
+</span><span>
+</span><span>This is my first blog post.
+</span></code></pre>
+<p>If you look at our <code>templates/blog-page.html</code> which our <code>content/blog/_index.md</code> references as the template for all our blog posts, it refers to our page's <code>titel</code> and <code>date</code> and content. Well that <em>frontmatter</em> at the top of our blog post tells that template the information we need to put <code>page.title</code> and <code>page.date</code> into our post.</p>
+<p>The <code>content</code> is everything after the second set of <code>+++</code>.</p>
+<h3 id="updating-templates-index-html">Updating <code>templates/index.html</code><a class="zola-anchor" href="#updating-templates-index-html" aria-label="Anchor link for: updating-templates-index-html">🔗</a></h3>
+<p>We want to actually <em>see</em> our blog posts when we visit the webpage's initial webpage at <code>mywebsite.com</code> so we'll update the <code>templates/index.html</code> file as follows.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{% extends &quot;base.html&quot; %}
+</span><span>
+</span><span>{% block content %}
+</span><span>&lt;</span><span style="color:#bf616a;">h1 </span><span style="color:#d08770;">class</span><span>=&quot;</span><span style="color:#a3be8c;">title</span><span>&quot;&gt;
+</span><span>  This is my blog made with Zola.
+</span><span>&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>THING I CAN&#39;T PUT
+</span><span>{% endblock content %}
+</span></code></pre>
+<p>Thing I can't put is a line that, when rendered by this zola website messes up the parsing, so I left it out.  There's some way to escape it, but I don't wanna figure that out, and that special block of code can be found at <a href="https://www.getzola.org/documentation/getting-started/overview/">Zola's documentary overview</a>.</p>
+<h3 id="summary">Summary<a class="zola-anchor" href="#summary" aria-label="Anchor link for: summary">🔗</a></h3>
+<p>There's a bunch of templates, and section definitions referencing various templates and html being referenced within in templates that aren't server but are they themselves recipes and... just a bunch of confusion.</p>
+<p>Writing this has been a very good way for me to get through that confusion so I have a basic understanding of the structure of not just a Zola static web generator but basically most static website generators.</p>
+<p>I doubt this could possibly help anyone besides myself, but hopefully, if I ever have any confusion, I can look back on this to try to understand the stuff a little better.</p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;impetus-for-using-grdb&#x2F;"
+    ><span class="mr-1.5">←</span><span>Impetus for Using GRDB</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;didset-willset&#x2F;"
+    ><span>didSet, and eventually willSet</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

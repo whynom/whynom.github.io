@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    Impetus for Using GRDB - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Impetus for Using GRDB" />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Impetus for Using GRDB" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Impetus for Using GRDB" />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;impetus-for-using-grdb&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;impetus-for-using-grdb&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Impetus for Using GRDB</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-18</time>
+  <span class="mx-1">&middot;</span>
+  <span>7min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#core-data-is-painful"
+            >Core Data is painful</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#swift-data"
+            >Swift Data</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#grdb"
+            >GRDB</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#my-love-affair-with-databases"
+                >My love affair with databases</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#in-steps-sqlite"
+                >In steps SQLite</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#grdb-1"
+            >GRDB</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/impetus-for-using-grdb/#final-words"
+            >Final words</a
+          >
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="core-data-is-painful">Core Data is painful<a class="zola-anchor" href="#core-data-is-painful" aria-label="Anchor link for: core-data-is-painful">🔗</a></h2>
+<p>When I first semi-earnestly started trying to program, Core Data was Apple's answer for persisting data between app usages.  I never did anything fancy with it, but it did get the job done for me once upon a time.</p>
+<p>The problems I had with it were that a lot of it was in the XCode gui and that it had some <em>technical baggage</em>.</p>
+<p>Doing anything not in text while trying to make a program, or when doing something programmatically, is a real pain.  I guess it's supposed to be beginner user friendly, and maybe avoid errors with typos, especially when you define things with strings, but it has huge downsides.</p>
+<p>When you truly are a beginner, learning things within a gui instead of with text means you have to <em>see</em> it.  You have to watch a video of someone clicking the correct box or at least have an image of someone doing it.  The worst part of this is that IDE's interfaces change pretty frequently.  An article or youtube video showing you where the checkbox is for one-to-many for a Cord Data instance isn't necessarily <em>exactly</em> where it was one year ago.</p>
+<p>Core Data was implemented when Objective-C was the language used for creating iOS and other Apple operating programs.  This lead to some awkwardness with things like optionals once we get to the Swift language era.  Optionals in Swift mean one thing and optionals in Core Data mean another thing, and this can lead to confusion.</p>
+<p>I only ever used Core Data for <em>very</em> simple needs, so my take on it is certainly not definitive and, on the bright side, it's my understanding that Core Data is very mature and thus works very well.  It's <em>rock solid</em>.</p>
+<h2 id="swift-data">Swift Data<a class="zola-anchor" href="#swift-data" aria-label="Anchor link for: swift-data">🔗</a></h2>
+<p>The real upside of SwiftData is that it's all in words.  It's all in text.  There's no more clicking a certain box to get a one-to-many relationship.</p>
+<p>It's also modern.  It's <em>swifty</em>, meaning it was made to be used in Swift and follows its standards.</p>
+<p>The downsides I ran into is that, when I did use it, it was hard to find any detailed information.  Most information I would stumble upon for using SwiftData was about doing the following:</p>
+<ol>
+<li>Making persistent data</li>
+<li>One to many relationships</li>
+<li>Migration</li>
+<li>Storing data in iCloud</li>
+</ol>
+<p>It does all those things with aplomb, but if I were trying to do things that are more complicated, I'm not even sure where to look.  I admit, I never tried very hard as I never needed to do anymore than the above.</p>
+<h2 id="grdb">GRDB<a class="zola-anchor" href="#grdb" aria-label="Anchor link for: grdb">🔗</a></h2>
+<p><a href="https://github.com/groue/GRDB.swift">GRDB</a> is a framework used to read and write from SQLite databases.  It's mature, well maintained and well documented.  Stepping out of very basic use cases into more complicated areas makes GRDB more pleasant to use than Core Data and SwiftData.</p>
+<h3 id="my-love-affair-with-databases">My love affair with databases<a class="zola-anchor" href="#my-love-affair-with-databases" aria-label="Anchor link for: my-love-affair-with-databases">🔗</a></h3>
+<p>At a previous job excel was our main tool.  It was mostly used as a visualization tool with very few computational functions to process data.  I was not the one responsible for those functions and they ended up being very brittle.  I'm not blaming the person who made the functions for this brittleness, it seems to me that that's just a trait of excel in general.</p>
+<p>By brittleness I mean if there was a space at the end of a number, a function may not work.  If a number had a dot at the end of it, it would act bizarrely.  It would be insane for me to list more problems as most office workers understand that excel stinks in many ways.  It's amazing and powerful, especially for those who don't necessarily want to write a lot of code to get something working, but it's also... the bane of every office workers existence.</p>
+<h3 id="in-steps-sqlite">In steps SQLite<a class="zola-anchor" href="#in-steps-sqlite" aria-label="Anchor link for: in-steps-sqlite">🔗</a></h3>
+<p>So I wanted to start automating some processes at my previous job.</p>
+<p>I often would have to send some piece of excel data to someone else.  I'd have to copy and paste the data, write some pretty rote words, and then format everything so it was okay.  Very boring, very repetitive.</p>
+<p>I found out that to do things like write boilerplate emails, check for certain pieces of data and so on, I could use a mixture of SQLite, Python, the pandas framework and some other python libraries that hooked into the Windows operating system.</p>
+<p>Everything unlocked.  On top of that, just using a database was pretty much superior to excel.  Specifically, even without any real programming experience, I think someone could use <a href="https://sqlitebrowser.org/">SQLitebrowser</a> better than they could excel.  It's true excel can make colors and bold and all that jazz, but with sqlitebrowser, someone can quite easily give every text with the word "empty" in it or get the sum, or average of a column or a million other things with just a very simple SQL query.</p>
+<h2 id="grdb-1">GRDB<a class="zola-anchor" href="#grdb-1" aria-label="Anchor link for: grdb-1">🔗</a></h2>
+<p>Okay, now GRDB.</p>
+<p>GRDB has the upsides of beubg mature and well documented but also detailed when it needs to be.  The reason I even went searching for something was because I knew I was going to be making a program heavily based on using a huge chunk of data in SQLite format.  I was going to need to import that giant database, update it between program versions and probably migrate quite a lot.  I'm sure SwiftData and Core Data can do this because they are also, as far as I know, based on SQLite.  The problem is, and especially with SwiftData, they are more aimed at ease of use over complex operations.  This leads to a lot of the information on how to use these tools being about very basic needs.  GRDB has a lot of documentation <em>and</em> a lot of users who've asked questions and answered various methods of doing very complicated and useful use cases.  Use cases much greater than what I need.</p>
+<h2 id="final-words">Final words<a class="zola-anchor" href="#final-words" aria-label="Anchor link for: final-words">🔗</a></h2>
+<p>Looking back, most of what I've gone over was the negatives of Core Data and SwiftData.  I knew there were alternatives but I used them because I thought they were the standards and thus time well spent.  Now that I've <em>matured</em> as a programmer, I see that learning more complex frameworks and libraries isn't as hard as I thought and, in fact, have a lot of advantages.  I doubt I'll ever look into the actual code behind GRDB, but I could if I wanted to.  There's a lot of documentation, there's a lot of community, and there are people actively developing GRDB!</p>
+<p>It's hard to describe the kind of relief I get knowing that I've found <em>the way</em> to persist data in Apple operating systems.  When I started programming the two biggest obstacles outside of actually writing code were making a UI and dealing with persistent models.  There was always an awkwardness with them. The problems I'd have to clear with those two areas were always annoying and felt like they were sucking the joy out of making programs.  I'm comfortable enough with SwiftUI to not feel that pain in the UI area any more, and now I feel like, once I really get my feet wet with GRDB, persistent data will also feel very doable.</p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;quick-sort-and-lessons-learned&#x2F;"
+    ><span class="mr-1.5">←</span><span>Quicksort and memory stuff in Rust</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;the-basics-of-zola&#x2F;"
+    ><span>The very basics of zola</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

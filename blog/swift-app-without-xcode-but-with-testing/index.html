@@ -1,0 +1,496 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    A quick swift application setup with testing without using XCode - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Creating a swift application to run tests without using Xcode." />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="A quick swift application setup with testing without using XCode" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Creating a swift application to run tests without using Xcode." />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;swift-app-without-xcode-but-with-testing&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;swift-app-without-xcode-but-with-testing&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">A quick swift application setup with testing without using XCode</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-05-22</time>
+  <span class="mx-1">&middot;</span>
+  <span>6min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#my-quick-foray-into-the-rust-programming-language"
+            >My quick foray into the Rust programming language.</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#xcode-you-are-but-my-enemy"
+            >XCode you are but my enemy</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#whip-up-that-basic-application"
+            >Whip up that basic application</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#the-given-boilerplate-code"
+            >The given boilerplate code</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#package-swift"
+            >Package.swift</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#targets"
+                >targets</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#testing-target"
+                >Testing target</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#making-and-running-basic-tests"
+            >Making and running basic tests</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#conclusion"
+            >Conclusion</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#finished-code"
+            >Finished code</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#package-swift-1"
+                >Package.swift</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/swift-app-without-xcode-but-with-testing/#quickapp-swift"
+                >quickApp.swift</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="my-quick-foray-into-the-rust-programming-language">My quick foray into the Rust programming language.<a class="zola-anchor" href="#my-quick-foray-into-the-rust-programming-language" aria-label="Anchor link for: my-quick-foray-into-the-rust-programming-language">🔗</a></h2>
+<p>There is no end of people that will sing the praises of Rust, and not without reason.  I do not care too much for the common things many seem to go gaga about, namely memory management that avoids a whole category of errors and small binary sizes.  I don't care about these things because I've never run into these problems.  This is probably because I've never worked on a big complicated codebase.</p>
+<p>There are several things I did go gaga about: extremely clear error messages, an overbearing warning system and a quick and easy way to whip up a new program <em>with</em> testing.  That last point is what I'm going to get into with Swift.</p>
+<h2 id="xcode-you-are-but-my-enemy">XCode you are but my enemy<a class="zola-anchor" href="#xcode-you-are-but-my-enemy" aria-label="Anchor link for: xcode-you-are-but-my-enemy">🔗</a></h2>
+<p>I like emacs.  I hate XCode.  XCode forces me to use a bunch of GUI checkboxes to tick in favor of direct text I can more easily examine and debug.  I also can't customize it <em>nearly</em> to the degree to which I can customize emacs.</p>
+<p>This added up to me wanting to just quickly whirl up a program to test some code outside of whatever application I was working on being a nuisance of making a new XCode project, going through its rigmarole and then finally ending up with having to produce my quick code and tests in an IDE I do not favor.</p>
+<p>What I aim to do here is show a way to clearly and quickly setup a space for testing code with <code>swift-testing</code> so I can play around and test out code in the text editor of my choice, emacs.</p>
+<h2 id="whip-up-that-basic-application">Whip up that basic application<a class="zola-anchor" href="#whip-up-that-basic-application" aria-label="Anchor link for: whip-up-that-basic-application">🔗</a></h2>
+<p>First let's make a new directory for our app I'm going to call quickApp and go into that new directory and make our new application.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">mkdir</span><span> quickApp
+</span><span style="color:#96b5b4;">cd</span><span> quickApp
+</span><span style="color:#bf616a;">swift</span><span> package init</span><span style="color:#bf616a;"> --type</span><span> executable
+</span></code></pre>
+<p>This gives us a Swift application that we can run with <code>swift run</code> while we are in our <code>quickApp</code> root directory.  When we do so we get greeted with the classic "Hello, world!".  So far so good.</p>
+<h2 id="the-given-boilerplate-code">The given boilerplate code<a class="zola-anchor" href="#the-given-boilerplate-code" aria-label="Anchor link for: the-given-boilerplate-code">🔗</a></h2>
+<p>If you do a quick <code>ls</code> you can see that our <code>quickApp</code> directory has a <code>Sources</code> directory with a <code>main.swift</code> file.  The code in that file is where we get our "Hello, world!" print.  This file is where we put all the code we want to run.</p>
+<p>The other file you'll find in your <code>quickApp</code> directory is <code>Package.swift</code>.  This is where we define our application setup like targets and dependencies.  This is where I will sing the praises of Rust yet again.  The Rust setup file is a very straight forward <code>.toml</code> file.  The Swift <code>Package.swift</code> setup file is decidedly more complicated, especially for a quick and dirty setup that we're going for.  Let's explore it now.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">// swift-tools-version: 6.1
+</span><span style="color:#65737e;">// The swift-tools-version declares the minimum version of Swift required to build this package.
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>PackageDescription
+</span><span>
+</span><span style="color:#b48ead;">let</span><span> package = Package(
+</span><span>    name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>    targets: [
+</span><span>        </span><span style="color:#65737e;">// Targets are the basic building blocks of a package, defining a module or a test suite.
+</span><span>        </span><span style="color:#65737e;">// Targets can depend on other targets in this package and products from dependencies.
+</span><span>        .executableTarget(
+</span><span>            name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>),
+</span><span>    ]
+</span><span>)
+</span></code></pre>
+<p>It's not super complicated but it wasn't trivial for me to setup with just the <code>swift-testing</code> library import and implementation.</p>
+<h2 id="package-swift"><code>Package.swift</code><a class="zola-anchor" href="#package-swift" aria-label="Anchor link for: package-swift">🔗</a></h2>
+<p>Let's add the following to our <code>Package.swift</code> file to target MacOS.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>...
+</span><span>name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>platforms: [
+</span><span>  .macOS(.v10_15)
+</span><span>],
+</span><span>...
+</span></code></pre>
+<p>I'm targeting the mac platform because I'm using a mac and I want to run code quickly and iteratively.  I don't want to pop open an iOS simulator or anything like that.  We're not looking to make a cross platform amazing program, we're trying to make some kind of very quick application for which we can write tests right off the bat and test things.</p>
+<p>Now add the <code>swift-testing</code> dependency.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>...
+</span><span style="color:#b48ead;">let</span><span> package = Package(
+</span><span>    name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>    platforms: [
+</span><span>        .macOS(.v10_15)
+</span><span>    ],
+</span><span>    dependencies: [
+</span><span>        .package(url: </span><span style="color:#a3be8c;">&quot;https://github.com/apple/swift-testing.git&quot;</span><span>, branch: </span><span style="color:#a3be8c;">&quot;main&quot;</span><span>)
+</span><span>    ],
+</span><span>    targets: [
+</span><span>        .executableTarget(
+</span><span>...
+</span></code></pre>
+<p>We can do a quick <code>swift run</code> and the dependency will be downloaded and put into our program.  There will be a warning</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">warning: </span><span>&#39;</span><span style="color:#a3be8c;">quickapp</span><span>&#39;: dependency &#39;</span><span style="color:#a3be8c;">swift-testing</span><span>&#39; is not used by any target
+</span></code></pre>
+<p>This makes sense because we haven't added the dependency to our testing target yet. Let's do that now.</p>
+<h3 id="targets">targets<a class="zola-anchor" href="#targets" aria-label="Anchor link for: targets">🔗</a></h3>
+<p>Before actually adding the Tests target, a quick word about targets.  They are basically a way of grouping code.  There's the executable target, which is the code for the actual program you're writing, and we're going to add another large group of code separate from the code we're actually writing for the application.  We're adding code which will be used for testing and will <em>not</em> be usable in the actual executable code.</p>
+<p>This has the benefit of separating our test functions from the functions we actually want to run in the program.  I actually personally don't like this because it adds a level of complication that could just be solved by naming testing functions appropriately with test in their name or by making tests have to be run in an instantiation of a testing class or something, but I'm sure there are a million reasons why I'm wrong about that.</p>
+<p>So what we want in the end is for the testing code to not be executable in our executable code <em>but</em> we <em>do</em> want our executable code to be runnable in our testing target because we need the tests to be able to run those functions to test them.</p>
+<h3 id="testing-target">Testing target<a class="zola-anchor" href="#testing-target" aria-label="Anchor link for: testing-target">🔗</a></h3>
+<p>Let's add a tests directory for our testing target.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">mkdir</span><span> Tests
+</span></code></pre>
+<p>Now we can add our testing dependency.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>...
+</span><span>            name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>),
+</span><span>        .testTarget(
+</span><span>            name: </span><span style="color:#a3be8c;">&quot;quickAppTests&quot;</span><span>,
+</span><span>            dependencies: [
+</span><span>                </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>                .product(name: </span><span style="color:#a3be8c;">&quot;Testing&quot;</span><span>, package: </span><span style="color:#a3be8c;">&quot;swift-testing&quot;</span><span>),
+</span><span>            ],
+</span><span>            path: </span><span style="color:#a3be8c;">&quot;Tests&quot;
+</span><span>        ),
+</span><span>...
+</span></code></pre>
+<p>A few notable things.</p>
+<p>First, you'll notice that our new test target has a dependency and it's the <code>quickApp</code> itself.  As stated before our testing code needs to be able to run our executable's code to be able to test that code.</p>
+<p>Next, you'll see that we've defined a path for our testing files.  It's in the <code>Tests</code> directory we made before.  We don't have this path in our executable target because we have all of our code for executable in our <code>quickApp/Sources</code> directory which is the default.</p>
+<p>Lastly, we say we want to have access to the <code>swift-testing</code> package so we can use that library in our testing files.</p>
+<h2 id="making-and-running-basic-tests">Making and running basic tests<a class="zola-anchor" href="#making-and-running-basic-tests" aria-label="Anchor link for: making-and-running-basic-tests">🔗</a></h2>
+<p>Add a file for our tsting code in our tests directory.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">cd</span><span> Tests
+</span><span style="color:#bf616a;">touch</span><span> quickAppTests.swift
+</span></code></pre>
+<p>When I'm making a new testing file I like to test the testing file by having a test that should fail, and a test that should pass.  Add the following code to the new <code>quickAppTests</code> file.</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#b48ead;">import </span><span>Testing
+</span><span>
+</span><span style="color:#b48ead;">@Test func </span><span>helloIsNotGoodbye() throws {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> helloString = </span><span style="color:#a3be8c;">&quot;Hello, world!&quot;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> goodbyeString = </span><span style="color:#a3be8c;">&quot;Goodbye, world!&quot;
+</span><span>
+</span><span>    #expect(helloString == goodbyeString)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">@Test func </span><span>oneIsOne() throws {
+</span><span>    #expect(</span><span style="color:#d08770;">1 </span><span>== </span><span style="color:#d08770;">1</span><span>)
+</span><span>}
+</span></code></pre>
+<p>Change to the <code>quickApp</code> root directory and run our tests</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span>swift test
+</span></code></pre>
+<p>You should get a result in your terminal telling you that our <code>helloIsNotGoodbye</code> function failed and our <code>oneIsOne</code> function passed.</p>
+<h2 id="conclusion">Conclusion<a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">🔗</a></h2>
+<p>This is quite a bit of work for doing something that should be a simple command line command but it gets me the desired result, a place I can put code and a place I can test that code.  I can also do this all in emacs which I'm constantly in anyway, so I don't have to mess around with XCode.</p>
+<p>I also feel like this is still simpler than the XCode route that requires me to check boxes, possibly uncheck certain boxes, and gives me bunch of UI boilerplate code in a few files I'll never need.</p>
+<p>In the end, I'd like to make a script that does all of the above, or even possibly a swift application that does because my distate for XCode does not extend to the actual Swift code I feel comfortable with and enjoy writing.</p>
+<h2 id="finished-code">Finished code<a class="zola-anchor" href="#finished-code" aria-label="Anchor link for: finished-code">🔗</a></h2>
+<h4 id="package-swift-1"><code>Package.swift</code><a class="zola-anchor" href="#package-swift-1" aria-label="Anchor link for: package-swift-1">🔗</a></h4>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">// swift-tools-version: 6.1
+</span><span style="color:#65737e;">// The swift-tools-version declares the minimum version of Swift required to build this package.
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>PackageDescription
+</span><span>
+</span><span style="color:#b48ead;">let</span><span> package = Package(
+</span><span>    name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>    platforms: [
+</span><span>        .macOS(.v10_15)
+</span><span>    ],
+</span><span>    dependencies: [
+</span><span>        .package(url: </span><span style="color:#a3be8c;">&quot;https://github.com/apple/swift-testing.git&quot;</span><span>, branch: </span><span style="color:#a3be8c;">&quot;main&quot;</span><span>)
+</span><span>    ],
+</span><span>    targets: [
+</span><span>        .executableTarget(
+</span><span>            name: </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>),
+</span><span>        .testTarget(
+</span><span>            name: </span><span style="color:#a3be8c;">&quot;quickAppTests&quot;</span><span>,
+</span><span>            dependencies: [
+</span><span>                </span><span style="color:#a3be8c;">&quot;quickApp&quot;</span><span>,
+</span><span>                .product(name: </span><span style="color:#a3be8c;">&quot;Testing&quot;</span><span>, package: </span><span style="color:#a3be8c;">&quot;swift-testing&quot;</span><span>),
+</span><span>            ],
+</span><span>            path: </span><span style="color:#a3be8c;">&quot;Tests&quot;
+</span><span>        ),
+</span><span>    ]
+</span><span>)
+</span></code></pre>
+<h4 id="quickapp-swift"><code>quickApp.swift</code><a class="zola-anchor" href="#quickapp-swift" aria-label="Anchor link for: quickapp-swift">🔗</a></h4>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#b48ead;">import </span><span>Testing
+</span><span>
+</span><span style="color:#b48ead;">@Test func </span><span>insert() throws {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> helloString = </span><span style="color:#a3be8c;">&quot;Hello, world!&quot;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> goodbyeString = </span><span style="color:#a3be8c;">&quot;Hello, world!&quot;
+</span><span>
+</span><span>    #expect(helloString == goodbyeString)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">@Test func </span><span>somethingDifferent() throws {
+</span><span>    #expect(</span><span style="color:#d08770;">1 </span><span>== </span><span style="color:#d08770;">1</span><span>)
+</span><span>}
+</span></code></pre>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;get-and-set-in-swift&#x2F;"
+    ><span class="mr-1.5">←</span><span>Get and Set on computed variables in Swift</span></a
+  >
+  <!---->
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

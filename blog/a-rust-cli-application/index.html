@@ -1,0 +1,467 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    Easy script in Rust - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Creating mvto with Rust" />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Easy script in Rust" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Creating mvto with Rust" />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;a-rust-cli-application&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;a-rust-cli-application&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Easy script in Rust</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-14</time>
+  <span class="mx-1">&middot;</span>
+  <span>5min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#the-mv-command"
+            >The mv command</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#why-rust"
+            >Why Rust?</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#a-command-line-program"
+                >A command line program</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#adding-some-arguments"
+                >Adding some arguments</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#capturing-user-inputs"
+                >Capturing user inputs</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#very-basic-rsync-functionality"
+                >Very basic rsync functionality.</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#the-spawn-method-and-showing-the-rsync-progress"
+                >The spawn method and showing the rsync progress.</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#progress-and-quiting"
+                >Progress and quiting</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/a-rust-cli-application/#was-it-worth-it-what-s-next"
+                >Was it worth it?  What&#x27;s next?</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="the-mv-command">The <code>mv</code> command<a class="zola-anchor" href="#the-mv-command" aria-label="Anchor link for: the-mv-command">🔗</a></h2>
+<p>The <code>mv</code> command moves a file or directory from one place to another.  The <code>rsync</code> command does the same thing, but it can also show progress which is particularly useful for moving things between a local computer and a server.  Rsync can also sync things in such a way that if a certain move is taking a very long time it can be halted and picked up later.</p>
+<p>I'm going to make a <code>mvto</code> command that's a Rust application that basically does <code>rsync -avz --progress --delete-source-files thing-to-move destination</code>.</p>
+<h2 id="why-rust">Why Rust?<a class="zola-anchor" href="#why-rust" aria-label="Anchor link for: why-rust">🔗</a></h2>
+<p>Because it's what I'm trying to learn, and there's no better way than doing.  This could probably be done with a simple shell script, or maybe an alias, but as I add more and more to it, there's a possibility that the <em>crustiness</em> of bash will start to outweigh the added complexity of doing something dead simple in a full programming language like Rust.</p>
+<h3 id="a-command-line-program">A command line program<a class="zola-anchor" href="#a-command-line-program" aria-label="Anchor link for: a-command-line-program">🔗</a></h3>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">use </span><span>std::process::Command;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> output = Command::new(&quot;</span><span style="color:#a3be8c;">ls</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">output</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">stdout: </span><span style="color:#d08770;">{}</span><span>&quot;, String::from_utf8_lossy(&amp;output.stdout));
+</span><span>}
+</span></code></pre>
+<ol>
+<li>The <code>Command</code> struct</li>
+</ol>
+<p>That import at the top gives us access to the Rust struct <a href="https://doc.rust-lang.org/std/process/struct.Command.html">Command</a>.  According to the documentation.</p>
+<p><em>A process builder, providing fine-grained control over how a new process should be spawned.</em></p>
+<p>The term <em>process</em> as it's used here means process your computer runs.  In my parlance, I like to think of it as it'll do a command line command.  It'll run <code>ls</code> or <code>rm</code> as a <em>child</em> command and can take the output from those commands and do stuff with it in Rust.</p>
+<ol start="2">
+<li><code>Command::new("ls").output()</code></li>
+</ol>
+<p>This just runs the <code>ls</code> list command sets the output of that command to the <code>output</code> variable.</p>
+<ol start="3">
+<li><code>println!("stdout: {}", String::from_utf8_lossy(&amp;output.stdout));</code></li>
+</ol>
+<p>This prints the output from the <code>ls</code> command we've run as a child process of our Rust application</p>
+<h3 id="adding-some-arguments">Adding some arguments<a class="zola-anchor" href="#adding-some-arguments" aria-label="Anchor link for: adding-some-arguments">🔗</a></h3>
+<p>The only change here is adding the <code>arg</code> methods to the command to give our <code>ls</code> command some arguments.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> output = Command::new(&quot;</span><span style="color:#a3be8c;">ls</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">-l</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">-R</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">output</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>
+</span><span>    println!(&quot;</span><span style="color:#a3be8c;">stdout: </span><span style="color:#d08770;">{}</span><span>&quot;, String::from_utf8_lossy(&amp;output.stdout));
+</span><span>}
+</span></code></pre>
+<p>But when making our eventual <code>rsync</code> like command, we'll have to feed in some arguments during the running of the application that can't be hardcoded into the program like <code>-l</code> and <code>-R</code> are here.  To do this, we'll have to capture user inputs.</p>
+<h3 id="capturing-user-inputs">Capturing user inputs<a class="zola-anchor" href="#capturing-user-inputs" aria-label="Anchor link for: capturing-user-inputs">🔗</a></h3>
+<p>We need to pull in the <code>env</code> module to collect the arguments from the command line and import <code>Path</code> to double check the directory we're trying to list is in fact a directory.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">use </span><span>std::env;
+</span><span style="color:#b48ead;">use </span><span>std::path::Path;
+</span></code></pre>
+<p>To collect all the arguments given we use the <code>collect</code> method as follows.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span>    </span><span style="color:#b48ead;">let</span><span> args: Vec&lt;String&gt; = env::args().</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let</span><span> first_arg = &amp;args[</span><span style="color:#d08770;">1</span><span>];
+</span></code></pre>
+<p>The <code>collect</code> method actually takes in the application name's on the cli as the first argument, but because I'm talking about the arguments given to the application, I'm calling the <code>first_arg</code> the second string in the collection.  I think it's not the <em>right</em> thing to do, but here we are.</p>
+<p>We then want to check to make sure we have a directory to feed to our <code>ls</code> command.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span>    </span><span style="color:#b48ead;">let</span><span> path = Path::new(&amp;first_arg);
+</span></code></pre>
+<p>We'll do the <code>ls</code> command on the directory if it is, but if not, we'll just say it's not a directory.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span>    </span><span style="color:#b48ead;">if</span><span> path.</span><span style="color:#96b5b4;">is_dir</span><span>() {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> is a directory</span><span>&quot;, first_arg);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> output = Command::new(&quot;</span><span style="color:#a3be8c;">ls</span><span>&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">arg</span><span>(&amp;first_arg)
+</span><span>        </span><span style="color:#65737e;">// .arg(&quot;-R&quot;)
+</span><span>            .</span><span style="color:#96b5b4;">output</span><span>()
+</span><span>            .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>
+</span><span>        println!(&quot;</span><span style="color:#a3be8c;">stdout: </span><span style="color:#d08770;">{}</span><span>&quot;, String::from_utf8_lossy(&amp;output.stdout));
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;"> is not a directory</span><span>&quot;, first_arg);
+</span><span>    }
+</span></code></pre>
+<p>As the program is now it can take a directory as a user input but if no directory is given, it'll ungracefully error.  We could make it <code>ls</code> the local directory when run without an argument, but enough playing around with <code>ls</code>, let's start with the <code>rsync</code>ing.</p>
+<h3 id="very-basic-rsync-functionality">Very basic <code>rsync</code> functionality.<a class="zola-anchor" href="#very-basic-rsync-functionality" aria-label="Anchor link for: very-basic-rsync-functionality">🔗</a></h3>
+<p>We're getting rid of the directory checking, so we've removed the <code>Path</code> import and the if statement logic.  We change the command to <code>rsync</code>, add the desired arguments and <em>voila</em>, we've got a very basic rsync command.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::process::Command;
+</span><span style="color:#b48ead;">use </span><span>std::env;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> args: Vec&lt;String&gt; = env::args().</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> source = &amp;args[</span><span style="color:#d08770;">1</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let</span><span> destination = &amp;args[</span><span style="color:#d08770;">2</span><span>];
+</span><span>
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> output = Command::new(&quot;</span><span style="color:#a3be8c;">rsync</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">-avz</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--progress</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--remove-source-files</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;source)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;destination)
+</span><span>        .</span><span style="color:#96b5b4;">output</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<h3 id="the-spawn-method-and-showing-the-rsync-progress">The <code>spawn</code> method and showing the rsync progress.<a class="zola-anchor" href="#the-spawn-method-and-showing-the-rsync-progress" aria-label="Anchor link for: the-spawn-method-and-showing-the-rsync-progress">🔗</a></h3>
+<p>While the above works, it won't show a progress bar.  The reason for making this application is to more or less improve upon the standard <code>mv</code> command, and showing that progress bar was one of the improvements</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> args: Vec&lt;String&gt; = env::args().</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> source = &amp;args[</span><span style="color:#d08770;">1</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let</span><span> destination = &amp;args[</span><span style="color:#d08770;">2</span><span>];
+</span><span>
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> output = Command::new(&quot;</span><span style="color:#a3be8c;">rsync</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">-avz</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--progress</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--remove-source-files</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;source)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;destination)
+</span><span>        .</span><span style="color:#96b5b4;">spawn</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p>This shows the progress, but after it runs, it won't quit the rust application.</p>
+<p>Looking at the <a href="https://doc.rust-lang.org/std/process/struct.Command.html#method.spawn">Command::spawn</a> documntation, we get the following explanation.</p>
+<p><em>Executes the command as a child process, returning a handle to it.</em>
+<em>By default, stdin, stdout and stderr are inherited from the parent.</em></p>
+<p>What I think this means is that it's inheritance of <code>stdout</code> means it shows this new child process in our terminal and thus shows the progress bar.  Success <em>but</em> the application hangs.</p>
+<p>When using this application now it completes the moving of the file but the application doesn't stop, it just keeps going.</p>
+<h3 id="progress-and-quiting">Progress and quiting<a class="zola-anchor" href="#progress-and-quiting" aria-label="Anchor link for: progress-and-quiting">🔗</a></h3>
+<p>Let's make our command a mutable variable and run the <code>wait</code> method on it.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> args: Vec&lt;String&gt; = env::args().</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> source = &amp;args[</span><span style="color:#d08770;">1</span><span>];
+</span><span>    </span><span style="color:#b48ead;">let</span><span> destination = &amp;args[</span><span style="color:#d08770;">2</span><span>];
+</span><span>
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> cmd = Command::new(&quot;</span><span style="color:#a3be8c;">rsync</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">-avz</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--progress</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&quot;</span><span style="color:#a3be8c;">--remove-source-files</span><span>&quot;)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;source)
+</span><span>        .</span><span style="color:#96b5b4;">arg</span><span>(&amp;destination)
+</span><span>        .</span><span style="color:#96b5b4;">spawn</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to execute command</span><span>&quot;);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> status = cmd.</span><span style="color:#96b5b4;">wait</span><span>().</span><span style="color:#96b5b4;">expect</span><span>(&quot;</span><span style="color:#a3be8c;">Failed to wait for rsync</span><span>&quot;);
+</span><span>
+</span><span>}
+</span></code></pre>
+<p>After running the <code>rsync</code> command our application ends, as we want.</p>
+<p><a href="https://doc.rust-lang.org/std/process/struct.Child.html#method.wait">std::process::Child</a> documentation has the following note.</p>
+<p><em>Waits for the child to exit completely, returning the status that it exited with.</em></p>
+<p>My meager understanding leads me to believe that when we run the <code>spawn</code> method it produces a child process that never stops.  The <code>wait</code> method gives us some result from that process thereby ending the the running of our code.</p>
+<p>Either way, we've got what we want.</p>
+<h3 id="was-it-worth-it-what-s-next">Was it worth it?  What's next?<a class="zola-anchor" href="#was-it-worth-it-what-s-next" aria-label="Anchor link for: was-it-worth-it-what-s-next">🔗</a></h3>
+<p>This very easily could have been an alias in a <code>.bashrc</code> but making a Rust program allows us to expand further on our usecase and go beyond what <code>rsync</code> offers.  My next goal will be to make our <code>mvto</code> command remove the empty directories that get left behind when using <code>--remove-source-files</code>.</p>
+<p>I'm a little reluctant to play around with <em>destroying</em> things, and I suspect this is why <code>rsync</code> doesn't have it built in but it's what I want and Computers should do <em>exactly</em> what I want, not just what other programmers have given me.</p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;binary-search-grokking-algorithms&#x2F;"
+    ><span class="mr-1.5">←</span><span>Binary Search Grokking Algorithms</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;quick-sort-and-lessons-learned&#x2F;"
+    ><span>Quicksort and memory stuff in Rust</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>

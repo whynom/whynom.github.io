@@ -1,0 +1,421 @@
+<!doctype html>
+<html class="not-ready lg:text-base" lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Title -->
+  <title>
+    Binary Search Grokking Algorithms - 
+  </title>
+
+  <!-- Meta -->
+  <meta name="theme-color" />
+
+  
+  <!-- Author -->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  
+  <!---->
+  <meta name="description" content="Binary Search Grokking Algorithms" />
+  <meta name="author" content="" />
+  <!-- The Open Graph protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Binary Search Grokking Algorithms" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:description" content="Binary Search Grokking Algorithms" />
+  <meta property="og:url" content="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;binary-search-grokking-algorithms&#x2F;" />
+  
+  <!---->
+  
+  <!---->
+  
+
+  <!-- CSS & JS -->
+  <link rel="preload stylesheet" as="style" href="https://whynom.github.io/main.css" />
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --bg-dark: #18181b;
+      --header: #e4e4e7;
+      --header-dark: #27272a;
+    }
+  </style>
+
+  
+
+  <!-- Dark Icon -->
+  <link rel="preload" as="image" href="https://whynom.github.io/icons/theme.svg" />
+
+  <!-- Math -->
+  
+  <!---->
+
+  <!-- Mermaid -->
+  
+  <!---->
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://whynom.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://whynom.github.io/apple-touch-icon.png" />
+
+  <!-- Feeds -->
+  
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;binary-search-grokking-algorithms&#x2F;" />
+
+  <!-- Head inject -->
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header
+  class="header fixed top-0 z-40 mx-auto min-h-[3.5rem] w-full"
+>
+  <div class="mx-auto w-full max-w-4xl p-3 lg:flex lg:justify-between">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <a class="text-2xl font-semibold" href="https://whynom.github.io"></a>
+        <div
+          class="btn-dark ml-4 h-6 w-6 shrink-0 cursor-pointer text-[0] [background:url(./icons/theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+          role="button"
+          aria-label="Dark"
+        ></div>
+      </div>
+      
+    </div>
+    <script>
+      // base
+      const htmlClass = document.documentElement.classList;
+      setTimeout(() => {
+        htmlClass.remove("not-ready");
+      }, 10);
+
+      // mobile menu
+      const btnMenu = document.querySelector(".btn-menu");
+      btnMenu?.addEventListener("click", () => {
+        htmlClass.toggle("open");
+      });
+
+      // dark theme
+      const setDark = (isDark) => {
+        if (isDark) {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "dark" }));
+          htmlClass.add("dark");
+        } else {
+          document.body.dispatchEvent(new CustomEvent("set-theme", { detail: "light" }));
+          htmlClass.remove("dark");
+        }
+        localStorage.setItem("dark", isDark);
+      };
+
+      // init
+      const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+      if (htmlClass.contains("dark")) {
+        setDark(true);
+      } else {
+        const darkVal = localStorage.getItem("dark");
+        setDark(darkVal ? darkVal === "true" : darkScheme.matches);
+      }
+
+      // listen system
+      darkScheme.addEventListener("change", (event) => {
+        setDark(event.matches);
+      });
+
+      // manual switch
+      const btnDark = document.querySelector(".btn-dark");
+      btnDark.addEventListener("click", () => {
+        setDark(localStorage.getItem("dark") !== "true");
+      });
+    </script>
+    
+  </div>
+</header>
+
+
+    <!-- Body Start inject -->
+    
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl break-words px-4 pb-16 pt-32 dark:prose-invert prose-pre:rounded-lg prose-img:rounded-lg"
+    >
+      
+<article>
+  <!-- Page Start inject -->
+  
+
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Binary Search Grokking Algorithms</h1>
+    <div class="text-sm antialiased opacity-60">
+  
+  <time>2025-04-13</time>
+  <span class="mx-1">&middot;</span>
+  <span>4min</span>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  
+  <!-- Page Info inject -->
+  
+</div>
+
+  </header>
+
+  
+
+  <!-- TOC -->
+  <!---->
+<div class="block-bg mb-12 flex rounded-lg p-2 text-lg">
+  <details>
+    <summary class="cursor-pointer py-1 pl-4">
+      <span>Table of Contents</span>
+    </summary>
+    <div class="px-2">
+      <ul>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#guess-my-number"
+            >Guess my number</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#the-best-strategy"
+            >The best strategy</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#let-s-code-it-tests-first"
+            >Let&#x27;s code it, tests first.</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#binary-search-function"
+            >Binary search function</a
+          >
+          
+        </li>
+        
+        <li>
+          <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#let-s-spice-it-up"
+            >Let&#x27;s spice it up</a
+          >
+          
+          <ul>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#learning-some-new-python-tricks"
+                >Learning some new Python tricks</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#my-function"
+                >My function</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#now-what-are-the-guesses"
+                >Now what are the guesses?</a
+              >
+            </li>
+            
+            <li>
+              <a class="no-underline hover:underline" href="https://whynom.github.io/blog/binary-search-grokking-algorithms/#final-thoughts"
+                >Final thoughts</a
+              >
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </div>
+  </details>
+</div>
+
+<!---->
+
+  <!-- Content -->
+  <section><h2 id="guess-my-number">Guess my number<a class="zola-anchor" href="#guess-my-number" aria-label="Anchor link for: guess-my-number">🔗</a></h2>
+<p>If I play a guessing game with you where you have to guess the number I'm thinking of between 0 and 100, and after each guess I tell you if the number is higher or lower, what's the best strategy?</p>
+<p>Let's first talk about what's likely the worst strategy.  The worst strategy is:</p>
+<p>You: 1</p>
+<p>Me: Higher</p>
+<p>You: 2</p>
+<p>Me: Higher</p>
+<p>You: 3</p>
+<p>It's apparent without much thought that this could take <em>up to</em> 101 guesses, and it is generally just a bad strategy.  Even if my number is 1, it's, generally speaking, a bad strategy.</p>
+<h2 id="the-best-strategy">The best strategy<a class="zola-anchor" href="#the-best-strategy" aria-label="Anchor link for: the-best-strategy">🔗</a></h2>
+<p>This may not be as apparent straight off the top of your head, but the best strategy is the following.</p>
+<p>You: 50</p>
+<p>Me: Higher</p>
+<p>You: 75</p>
+<p>Me: Lower</p>
+<p>You: 62</p>
+<p>Me: Higher</p>
+<p>You: 68</p>
+<p>Me: You got it!</p>
+<p>It's just apparent that if you keep cutting the remaining numbers in half and guessing the middle number, you're throwing away the largest amount of numbers you can each guess, until you get down to so few remaining number, you have but 1, or stumble upon the correct one on the way to that last standing number.</p>
+<h2 id="let-s-code-it-tests-first">Let's code it, tests first.<a class="zola-anchor" href="#let-s-code-it-tests-first" aria-label="Anchor link for: let-s-code-it-tests-first">🔗</a></h2>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>my_list = [</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">9</span><span>]
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_binary_search</span><span>():
+</span><span>    </span><span style="color:#b48ead;">assert </span><span style="color:#bf616a;">binary_search</span><span>(my_list, </span><span style="color:#d08770;">3</span><span>) == </span><span style="color:#d08770;">1
+</span><span>    </span><span style="color:#b48ead;">assert </span><span style="color:#bf616a;">binary_search</span><span>(my_list, -</span><span style="color:#d08770;">1</span><span>) == </span><span style="color:#d08770;">None
+</span></code></pre>
+<p>We want to make a function <code>binary_search</code> that satisfies those tests.  Give the function a number, and it tells you the array index.  Give the function the number <code>3</code> and it tells you it's array index is <code>1</code>. Give it <code>-1</code> which doesn't exist, it gives you <code>None</code>.</p>
+<h2 id="binary-search-function">Binary search function<a class="zola-anchor" href="#binary-search-function" aria-label="Anchor link for: binary-search-function">🔗</a></h2>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">binary_search</span><span>(</span><span style="color:#bf616a;">arr</span><span>,</span><span style="color:#bf616a;">item</span><span>):
+</span><span>    low = </span><span style="color:#d08770;">0
+</span><span>    high = </span><span style="color:#96b5b4;">len</span><span>(arr)-</span><span style="color:#d08770;">1
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while </span><span>low &lt;= high:
+</span><span>        mid = (low + high) // </span><span style="color:#d08770;">2
+</span><span>        guess = arr[mid]
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">if </span><span>guess == item:
+</span><span>            </span><span style="color:#b48ead;">return </span><span>mid
+</span><span>        </span><span style="color:#b48ead;">elif </span><span>guess &gt; item:
+</span><span>            high = mid - </span><span style="color:#d08770;">1
+</span><span>        </span><span style="color:#b48ead;">else</span><span>:
+</span><span>            low = mid + </span><span style="color:#d08770;">1
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">None
+</span></code></pre>
+<p>This function is pretty self-explanatory.  Give it an array, give it an <code>item</code>, which is what it looks for, and it will spit out the array index, using the <em>algorithm</em> described earlier.  This function and idea were taken from the book <a href="https://www.manning.com/books/grokking-algorithms">Grokking Algorithms</a>.  In fact, I'll be using this to <em>grok algorithms</em> amazingly enough, so I'll be citing this book a lot in future writings.</p>
+<h2 id="let-s-spice-it-up">Let's spice it up<a class="zola-anchor" href="#let-s-spice-it-up" aria-label="Anchor link for: let-s-spice-it-up">🔗</a></h2>
+<p>I want more information, I don't just want the index, I want how many guesses and which guesses were made.  When I made that guessing game example at the top of this writing, I just halved the difference and added or subtracted from or to the lower number or higher number.  Is that really <em>exactly</em> what's going on?</p>
+<p>I'm terribly afraid of things like the <a href="https://en.wikipedia.org/wiki/Off-by-one_error#Fencepost_error">fencepost error</a> and casually rounding and other such errors when doing rote Math off the top of my head.  Let's make the computer do the rote math.</p>
+<h3 id="learning-some-new-python-tricks">Learning some new Python tricks<a class="zola-anchor" href="#learning-some-new-python-tricks" aria-label="Anchor link for: learning-some-new-python-tricks">🔗</a></h3>
+<p>First off, I sure as heck don't want to write an array with <code>[0, 1, 2, 3, ... 100]</code>.  I don't want to type out 100 numbers.  That's madness.  Computer do it for me!</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>numbers_through_100 = </span><span style="color:#bf616a;">list</span><span>(</span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">101</span><span>))
+</span></code></pre>
+<p>The ole' LLM machine tells me that's how you do it.  To me it reads a little clunky because the list doesn't really include the 101, but I'm gonna leave dogs lying down and all that.</p>
+<p>Apparently in Python, they call arrays lists, or really there is something called an array, but it's part of a module or something.  I'm just gonna call these collections arrays.  And probably lists sometimes.  Enjoy.</p>
+<h3 id="my-function">My function<a class="zola-anchor" href="#my-function" aria-label="Anchor link for: my-function">🔗</a></h3>
+<p>First things first, I want to see how many guesses my algorithm takes.  It's easy enough to add.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">my_binary_search</span><span>(</span><span style="color:#bf616a;">arr</span><span>,</span><span style="color:#bf616a;">item</span><span>):
+</span><span>    low = </span><span style="color:#d08770;">0
+</span><span>    high = </span><span style="color:#96b5b4;">len</span><span>(arr)-</span><span style="color:#d08770;">1
+</span><span>    guesses = </span><span style="color:#d08770;">0
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while </span><span>low &lt;= high:
+</span><span>        guesses += </span><span style="color:#d08770;">1
+</span><span>        mid = (low + high) // </span><span style="color:#d08770;">2
+</span><span>        guess = arr[mid]
+</span><span>        </span><span style="color:#d08770;">...
+</span></code></pre>
+<p>And, of course the test to go along with it.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_my_binary_search</span><span>():
+</span><span>    </span><span style="color:#b48ead;">assert </span><span style="color:#bf616a;">my_binary_search</span><span>(numbers_through_100, </span><span style="color:#d08770;">50</span><span>) == (</span><span style="color:#d08770;">50</span><span>, </span><span style="color:#d08770;">1</span><span>)
+</span></code></pre>
+<h3 id="now-what-are-the-guesses">Now what are the guesses?<a class="zola-anchor" href="#now-what-are-the-guesses" aria-label="Anchor link for: now-what-are-the-guesses">🔗</a></h3>
+<p>I've expanded upon the function to be able see how many guesses it takes to find the index, but I'd also like to see <em>what</em> guesses the algorithm makes before it gets to its answer.  I'd like to see if the guessing game example at the top of this writing made sense!  I did it right off the top of my head, so maybe it doesn't!</p>
+<p><em>let's find out</em></p>
+<p>First sauce up our testarooney</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_my_binary_search_with_my_numbers</span><span>():
+</span><span>    </span><span style="color:#b48ead;">assert </span><span style="color:#bf616a;">my_binary_search</span><span>(numbers_through_100, </span><span style="color:#d08770;">50</span><span>) == (</span><span style="color:#d08770;">50</span><span>, </span><span style="color:#d08770;">1</span><span>, [</span><span style="color:#d08770;">50</span><span>])
+</span></code></pre>
+<p>I realized my naming convention of calling the <em>number of guesses</em> just plain <em>guesses</em> really threw a wrench in my hammer.  I updated it to a better name and added a variable which is more appropriately called <code>guesses</code></p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">my_binary_search</span><span>(</span><span style="color:#bf616a;">arr</span><span>,</span><span style="color:#bf616a;">item</span><span>):
+</span><span>    low = </span><span style="color:#d08770;">0
+</span><span>    high = </span><span style="color:#96b5b4;">len</span><span>(arr)-</span><span style="color:#d08770;">1
+</span><span>    list_of_guesses = []
+</span><span>    number_of_guesses = </span><span style="color:#d08770;">0
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while </span><span>low &lt;= high:
+</span><span>        number_of_guesses += </span><span style="color:#d08770;">1
+</span><span>        mid = (low + high) // </span><span style="color:#d08770;">2
+</span><span>        list_of_guesses.</span><span style="color:#bf616a;">append</span><span>(mid)
+</span><span>        guess = arr[mid]
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">if </span><span>guess == item:
+</span><span>            </span><span style="color:#b48ead;">return </span><span>(mid, number_of_guesses, list_of_guesses)
+</span><span>        </span><span style="color:#d08770;">...
+</span></code></pre>
+<h3 id="final-thoughts">Final thoughts<a class="zola-anchor" href="#final-thoughts" aria-label="Anchor link for: final-thoughts">🔗</a></h3>
+<p>So my initial example at the top was <em>correct</em>.  Is this because I'm a genius?  Well, head size is correlated to intelligence and I'm basically an Easter Island statute, so I'll let you put too and too together.</p>
+<p><a href="https://github.com/whynom/python-binary-search-beginning-algorithm">Github Repo</a> with all the finalized code.</p>
+</section>
+
+  <hr />
+
+  <!-- Post Taxonomies -->
+  
+<!---->
+
+  <!-- Post Nav -->
+  
+<nav class="block-bg mt-12 flex flex-wrap rounded-lg text-lg">
+  
+  <a
+    class="block-hover-mask flex min-w-[50%] grow items-center rounded-l-md p-6 pr-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;my-first-github-repo&#x2F;"
+    ><span class="mr-1.5">←</span><span>My first github repo</span></a
+  >
+  <!---->
+  
+  <a
+    class="block-hover-mask ml-auto flex min-w-[50%] grow items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline"
+    href="https:&#x2F;&#x2F;whynom.github.io&#x2F;blog&#x2F;a-rust-cli-application&#x2F;"
+    ><span>Easy script in Rust</span><span class="ml-1.5">→</span></a
+  >
+  
+</nav>
+
+<!---->
+
+  <!-- Comment -->
+  
+
+  <!-- Page End inject -->
+  
+</article>
+
+    </main>
+
+    <footer class="mx-auto flex max-w-3xl flex-wrap items-center px-8 py-4 text-sm opacity-60">
+  <div class="mr-auto basis-full lg:basis-1/2">
+    <!---->
+    <!---->
+    &copy; 2025<!---->
+    
+    <a class="link" href="https://whynom.github.io">
+      
+    </a>
+    
+  </div>
+  <div class="flex basis-full lg:basis-1/2 lg:justify-end">
+    <a class="link mr-6 lg:ml-6" href="https://www.getzola.org/" rel="noopener" target="_blank">
+      Powered by Zola
+    </a>
+    <a class="link" href="https://github.com/st1020/kita" rel="noopener" target="_blank">✎ Kita</a>
+  </div>
+  <!-- Footer inject -->
+  
+</footer>
+
+
+    <!-- Body End inject -->
+    
+  </body>
+</html>
